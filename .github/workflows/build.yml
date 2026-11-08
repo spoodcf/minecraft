@@ -1,0 +1,16 @@
+name: Build TI-84 Plus CE Program
+on: [push, workflow_dispatch]
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    container:
+      image: ghcr.io/ce-programming/toolchain:latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Compile
+        run: make
+      - name: Upload Built Files
+        uses: actions/upload-artifact@v4
+        with:
+          name: ti84-game-files
+          path: bin/*.8x*
