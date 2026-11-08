@@ -8,10 +8,8 @@ jobs:
 
       - name: Install CE C/C++ Toolchain
         run: |
-          URL=$(curl -s https://github.com | grep "browser_download_url.*Linux.*\.tar\.gz" | cut -d '"' -f 4 | head -n 1)
-          echo "Downloading $URL"
-          wget -q "$URL" -O CEdev.tar.gz
-          tar -xzf CEdev.tar.gz -C /opt
+          wget -q https://github.com
+          unzip -q CEdev-Linux.zip -d /opt
           echo "/opt/CEdev/bin" >> $GITHUB_PATH
 
       - name: Compile
